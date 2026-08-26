@@ -33,6 +33,7 @@ import { RegisterService } from '../services/register.service';
   styleUrl: './register-form.component.scss'
 })
 export class RegisterFormComponent implements OnInit {
+  private readonly THAILAND_COUNTRY_ID = 1
   private readonly fb = inject(FormBuilder);
   private readonly master = inject(MasterFacadeService);
   private readonly registerService = inject(RegisterService);
@@ -126,6 +127,10 @@ export class RegisterFormComponent implements OnInit {
   ngOnInit(): void {
     // โหลด Master หลักทั้งหมดครั้งเดียวตอนเปิดหน้า
     this.master.loadAll().subscribe();
+
+    // 🔒 ล็อคประเทศเป็นไทย ตั้งค่าได้ทันทีไม่ต้องรอโหลด master เสร็จ
+    this.form.controls.countryId.setValue(this.THAILAND_COUNTRY_ID);
+    this.form.controls.countryId.disable();
 
     // cascading: เลือกจังหวัด -> โหลดอำเภอ, เคลียร์อำเภอ/ตำบลเดิม
     this.form.controls.provinceId.valueChanges.subscribe((provinceId) => {

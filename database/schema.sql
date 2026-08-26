@@ -9,9 +9,22 @@
 -- 1. MASTER DATA — Thai Address
 -- ============================================================
 
+CREATE TABLE country (
+    country_id      SERIAL PRIMARY KEY,
+    country_name_th VARCHAR(150),
+    country_name_en VARCHAR(150),
+    iso_alpha2      CHAR(2),
+    iso_alpha3      CHAR(3),
+    official_name   VARCHAR(200),
+    region          VARCHAR(100),
+    sub_region      VARCHAR(100),
+    capital_city    VARCHAR(100)
+);
+
 CREATE TABLE thai_geographies (
     id          SERIAL PRIMARY KEY,
-    name        VARCHAR(100) NOT NULL
+    name        VARCHAR(100) NOT NULL,
+    country_id  INT NOT NULL REFERENCES country(country_id)
 );
 
 CREATE TABLE thai_provinces (
@@ -45,18 +58,6 @@ CREATE TABLE thai_tambons (
 -- ============================================================
 -- 2. MASTER DATA — Country / Province (International)
 -- ============================================================
-
-CREATE TABLE country (
-    country_id      SERIAL PRIMARY KEY,
-    country_name_th VARCHAR(150),
-    country_name_en VARCHAR(150),
-    iso_alpha2      CHAR(2),
-    iso_alpha3      CHAR(3),
-    official_name   VARCHAR(200),
-    region          VARCHAR(100),
-    sub_region      VARCHAR(100),
-    capital_city    VARCHAR(100)
-);
 
 CREATE TABLE province (
     province_id     SERIAL PRIMARY KEY,

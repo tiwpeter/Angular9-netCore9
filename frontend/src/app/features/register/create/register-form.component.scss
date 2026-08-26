@@ -50,9 +50,13 @@
 
 .container {
   max-width: 880px;
-  margin: 28px auto 120px;
+  margin: 28px auto 0;
   padding: 0 20px;
+  // เผื่อพื้นที่ด้านล่างให้พอดีกับความสูงจริงของ .footer-bar (padding 14px*2 + ปุ่ม ~40px ≈ 68px)
+  // บวก safe-area-inset-bottom (จอมือถือที่มี home indicator เช่น iPhone) + กันชนเพิ่ม 40px
+  padding-bottom: calc(68px + env(safe-area-inset-bottom, 0px) + 40px);
   display: block;
+  box-sizing: border-box;
 }
 
 .progress {

@@ -1,13 +1,36 @@
 BEGIN;
 
+-- 0) country
+INSERT INTO country (
+	country_id,
+	country_name_th,
+	country_name_en,
+	iso_alpha2,
+	iso_alpha3,
+	official_name,
+	region,
+	sub_region,
+	capital_city
+) VALUES (
+	1,
+	'ประเทศไทย',
+	'Thailand',
+	'TH',
+	'THA',
+	'ราชอาณาจักรไทย',
+	'Asia',
+	'South-Eastern Asia',
+	'Bangkok'
+);
+
 -- 1) thai_geographies
-INSERT INTO thai_geographies (id, name) VALUES
-(1, 'ภาคเหนือ'),
-(2, 'ภาคกลาง'),
-(3, 'ภาคตะวันออกเฉียงเหนือ'),
-(4, 'ภาคตะวันตก'),
-(5, 'ภาคตะวันออก'),
-(6, 'ภาคใต้');
+INSERT INTO thai_geographies (id, name, country_id) VALUES
+(1, 'ภาคเหนือ', 1),
+(2, 'ภาคกลาง', 1),
+(3, 'ภาคตะวันออกเฉียงเหนือ', 1),
+(4, 'ภาคตะวันตก', 1),
+(5, 'ภาคตะวันออก', 1),
+(6, 'ภาคใต้', 1);
 
 -- 2) thai_provinces
 INSERT INTO thai_provinces (id, name_th, name_en, geography_id) VALUES
